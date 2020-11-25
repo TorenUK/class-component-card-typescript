@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// components
+import Card from "./components/Card";
+
+// utils
+import { getTotal } from "./utils";
+
+interface State {
+  totalPrice: number;
+  quantity: number;
+}
+
+class App extends React.Component<{}, State> {
+  render() {
+    this.state = {
+      totalPrice: 0,
+      quantity: 0,
+    };
+    const { totalPrice, quantity } = this.state;
+
+    return (
+      <div className="app">
+        <Card totalPrice={totalPrice} quantity={quantity} />
+      </div>
+    );
+  }
 }
 
 export default App;
