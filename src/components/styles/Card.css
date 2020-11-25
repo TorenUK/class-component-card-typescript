@@ -1,0 +1,29 @@
+.card {
+  width: 800px;
+  height: 500px;
+
+  display: flex;
+  justify-content: space-evenly;
+
+  box-shadow: 1px 1px 5px 1px black;
+  border-radius: 5px;
+}
+
+.card__product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__product > img {
+  max-width: 400px;
+  object-fit: contain;
+}
+
+.card__interact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
