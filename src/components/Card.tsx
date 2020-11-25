@@ -3,31 +3,57 @@ import React from "react";
 // components
 import "./styles/Card.css";
 
+// utils
+import { getTotal } from "../utils";
+
 type Props = {
-  totalPrice: number;
-  quantity: number;
-  product: Array<{ price: number; image: string }>;
+  product: { price: number; image: string };
 };
 
-class Card extends React.Component<Props, {}> {
+interface State {
+  totalPrice: number;
+  quantity: number;
+}
+
+class Card extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
+    this.state = {
+      totalPrice: 0,
+      quantity: 1,
+    };
   }
 
   render() {
-    const product = this.props.product;
+    const { price, image } = this.props.product;
+    const { quantity, totalPrice } = this.state;
 
     return (
       <div className="card">
-        {product.map((product) => (
-          <div className="card__product">
-            <h3>£{product.price}</h3>
-            <img src={product.image} />
-          </div>
-        ))}
+        <div className="card__product">
+          <h3>£ {price}</h3>
+          <img src={image} />
+        </div>
         <div className="card__interact">
-          <p>total price:{this.props.totalPrice}</p>
-          <p>quantity:{this.props.quantity}</p>
+          <h3>total price: £{totalPrice}</h3>
+          <h3>quantity: {quantity}</h3>
+          <div className="card__buttons">
+            <button
+              onClick={(event: any) => {
+                getTotal(quantity, price);
+              }}
+            >
+              +
+            </button>
+            <button
+              onClick={(event: any) => {
+                getTotal(quantity, price);
+              }}
+            >
+              -
+            </button>
+          </div>
         </div>
       </div>
     );
