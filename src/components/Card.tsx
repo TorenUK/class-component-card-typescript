@@ -16,13 +16,32 @@ interface State {
 }
 
 class Card extends React.Component<Props, State> {
-  constructor(props: Props) {
+  public constructor(props: Props) {
     super(props);
 
     this.state = {
       totalPrice: 0,
       quantity: 1,
     };
+  }
+
+  handlePlus() {
+    this.setState({
+      quantity: this.state.quantity + 1,
+    });
+  }
+
+  handleMinus() {
+    this.setState({
+      quantity: this.state.quantity - 1,
+    });
+  }
+
+  componentDidMount() {
+    const { price } = this.props.product;
+    this.setState({
+      totalPrice: this.state.quantity * price,
+    });
   }
 
   render() {
@@ -39,20 +58,8 @@ class Card extends React.Component<Props, State> {
           <h3>total price: £{totalPrice}</h3>
           <h3>quantity: {quantity}</h3>
           <div className="card__buttons">
-            <button
-              onClick={(event: any) => {
-                getTotal(quantity, price);
-              }}
-            >
-              +
-            </button>
-            <button
-              onClick={(event: any) => {
-                getTotal(quantity, price);
-              }}
-            >
-              -
-            </button>
+            <button>+</button>
+            <button>-</button>
           </div>
         </div>
       </div>
